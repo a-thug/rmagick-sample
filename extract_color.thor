@@ -7,7 +7,9 @@ class ExtractColor < Thor
   def extract(path_to_image)
     obj = RmagickExtractColor.new(path_to_image)
     obj.get_mode
+    obj.summarize
     obj.display
+    obj.summarized_hist_display
   end
 end
 
@@ -51,10 +53,40 @@ class RmagickExtractColor
     end
   end
 
+  def summarize
+   summarized_hist = @hist.inject({}) do |hash, key_val|
+    color = key_val[0][1] + key_val[0][3] + key_val[0][5]
+
+    hash[color] ||= 0
+    hash[color] += key_val[1]
+    hash
+   end
+
+   # ヒストグラムのハッシュを値の大きい順にソート
+    @summarized_hist = summarized_hist.sort{|a, b| b[1] <=> a[1]}
+  end
+
   # 結果表示
   def display
     begin
       @hist.each do |color, count|
+        rate = (count / @px_total.to_f) * 100
+        break if rate < RATE_MIN
+        puts "#{color} => #{count} px ( #{sprintf("%2.4f", rate)} % )"
+      end
+      puts
+      puts "Image Size: #{@px_x} px * #{@px_y} px"
+      puts "TOTAL     : #{@px_total} px, #{@hist.size} colors"
+    rescue => e
+      STDERR.puts "[ERROR][#{self.class.name}.display] #{e}"
+      exit 1
+    end
+  end
+
+  # サマライズしたヒストグラムの結果表示
+  def summarized_hist_display
+    begin
+      @summarized_hist.each do |color, count|
         rate = (count / @px_total.to_f) * 100
         break if rate < RATE_MIN
         puts "#{color} => #{count} px ( #{sprintf("%2.4f", rate)} % )"
