@@ -53,6 +53,7 @@ class RmagickExtractColor
     end
   end
 
+  # 取得したカラーヒストグラムをサマる(#XAYBZC → #XYZのようにする)
   def summarize
    summarized_hist = @hist.inject({}) do |hash, key_val|
     color = key_val[0][1] + key_val[0][3] + key_val[0][5]

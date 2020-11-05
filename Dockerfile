@@ -16,4 +16,4 @@ RUN bundle install --jobs=4 --retry=3 && \
 
 COPY . .
 
-CMD ["thor", "color:extract", "sample.jpeg"]
+CMD ["sh"]
