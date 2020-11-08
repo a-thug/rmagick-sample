@@ -4,7 +4,8 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         gcc \
         build-essential \
-        libmagickwand-dev && \
+        libmagickwand-dev \
+        unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
