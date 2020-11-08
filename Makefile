@@ -1,11 +1,16 @@
-TARGET = sample.jpeg
+TARGET_IMAGE = sample.jpeg
+TARGET_DIRECTORY = sample
 
-default: build-image extract
+default: build extract_from_image
 
-.PHONY: build-image
-build-image:
+.PHONY: build
+build:
 	docker-compose build
 
-.PHONY: extract
-extract:
+.PHONY: extract_from_image
+extract_from_image:
 	docker-compose run app thor color:extract ${TARGET}
+
+.PHONY: extract_from_directory
+extract_from_directory:
+	docker-compose run app thor color:extract_from_directory ${TARGET_DIRECTORY}
