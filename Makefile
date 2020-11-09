@@ -14,3 +14,11 @@ extract_from_image:
 .PHONY: extract_from_directory
 extract_from_directory:
 	docker-compose run app thor color:extract_from_directory ${TARGET_DIRECTORY}
+
+.PHONY: rubocop
+rubocop:
+	docker-compose run app bundle exec rubocop 
+
+.PHONY: rubocop-a
+rubocop-a:
+	docker-compose run app bundle exec rubocop -a

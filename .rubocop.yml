@@ -1,0 +1,79 @@
+inherit_from: .rubocop_todo.yml
+
+require: rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - "log/**/*"
+    - "tmp/**/*"
+
+Metrics/AbcSize:
+  Severity: refactor
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Severity: refactor
+
+Metrics/CyclomaticComplexity:
+  Severity: refactor
+
+Metrics/LineLength:
+  Max: 120
+  Severity: refactor
+
+Metrics/MethodLength:
+  Severity: refactor
+
+Metrics/PerceivedComplexity:
+  Severity: refactor
+
+Documentation:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: true
+
+Style/MixinGrouping:
+  Enabled: true
+  Exclude:
+    - 'spec/spec_helper.rb'
+    - 'spec/**/*_spec.rb'
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    # https://github.com/bbatsov/rubocop/issues/4222
+    - 'spec/**/*'
+
+# Settings for rspec
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: true
+  Exclude:
+    - 'spec/requests/**/*_spec.rb'
+    - 'spec/services/**/*_spec.rb'
+
+RSpec/ExampleLength:
+  Max: 25
