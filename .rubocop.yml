@@ -71,9 +71,7 @@ RSpec/NamedSubject:
 
 RSpec/MultipleExpectations:
   Enabled: true
-  Exclude:
-    - 'spec/requests/**/*_spec.rb'
-    - 'spec/services/**/*_spec.rb'
+  Max: 7
 
 RSpec/ExampleLength:
   Max: 25
