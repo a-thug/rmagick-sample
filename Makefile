@@ -9,7 +9,7 @@ build:
 
 .PHONY: extract_from_image
 extract_from_image:
-	docker-compose run app thor color:extract ${TARGET}
+	docker-compose run app thor color:extract_from_image ${TARGET_IMAGE}
 
 .PHONY: extract_from_directory
 extract_from_directory:
@@ -22,3 +22,8 @@ rubocop:
 .PHONY: rubocop-a
 rubocop-a:
 	docker-compose run app bundle exec rubocop -a
+
+.PHONY: rspec
+rspec:
+	docker-compose run app rspec ./spec
+
