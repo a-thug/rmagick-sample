@@ -1,4 +1,4 @@
-FROM ruby:2.7.2-slim-buster
+FROM ruby:2.7.1-slim-buster
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -17,4 +17,6 @@ RUN bundle install --jobs=4 --retry=3 && \
 
 COPY . .
 
-CMD ["sh"]
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
