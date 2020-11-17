@@ -17,6 +17,4 @@ RUN bundle install --jobs=4 --retry=3 && \
 
 COPY . .
 
-COPY entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["sh"]
