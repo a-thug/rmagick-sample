@@ -32,7 +32,6 @@ jobs:
            libmagickwand-dev \
            unzip && \
            apt-get clean && \
-           rm -rf /var/lib/apt/lists/*
     - name: Install dependencies
       run: bundle install
     - name: Run tests
