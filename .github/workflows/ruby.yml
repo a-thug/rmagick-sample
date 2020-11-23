@@ -31,7 +31,7 @@ jobs:
            build-essential \
            libmagickwand-dev \
            unzip && \
-           apt-get clean && \
+           apt-get clean
     - name: Install dependencies
       run: bundle install
     - name: Run tests
