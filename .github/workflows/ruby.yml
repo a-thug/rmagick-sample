@@ -27,13 +27,13 @@ jobs:
     - name: Install sudo package
       run: apt update && apt install sudo
     - name: Add dependency
-      run: apt-get update && \
-           apt-get install -y --no-install-recommends \
+      run: sudo apt-get update && \
+           sudo apt-get install -y --no-install-recommends \
            gcc \
            build-essential \
            libmagickwand-dev \
            unzip && \
-           apt-get clean
+           sudo apt-get clean
     - name: Install dependencies
       run: bundle install
     - name: Run tests
