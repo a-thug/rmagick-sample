@@ -75,7 +75,7 @@ class RmagickExtractColor
 
   # サマライズしたヒストグラムの結果表示
   def summarized_hist_display
-    @summarized_hist.each do |color, count|
+    summarized_hist.each do |color, count|
       rate = (count / @px_total.to_f) * 100
       break if rate < RATE_MIN
 
